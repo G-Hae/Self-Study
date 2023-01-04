@@ -1,5 +1,4 @@
-#[momentum]
-
+<strong>[momentum]</strong><br>
 기간: 2022.12.23~2023.01.05]<br>
 채널: 노마드코더<br>
 강의: 바닐라 JS로 크롬 앱 만들기<br>
