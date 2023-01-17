@@ -25,12 +25,29 @@ function App() {
     console.log("hello", value)
   };
 
+  interface DummyProps{
+    text: string;
+    active?:boolean;
+  };
+
+  function Dummy({text, active = false}:DummyProps){
+    return <h1>{text}</h1>
+  };
+
+  const onClick=(e:React.MouseEvent<HTMLButtonElement>)=>{
+    console.log('이벤트타입지정하는 법')
+  }
+
   return (
     <Container>
       <H1>Hi Everybody</H1>
       <form onSubmit={onSubmit}>
         <input onChange={onChange} value={value} type="text" placeholder="username"/>
         <button>LOG IN</button>
+        <Dummy active text="안녕하니"/>
+        <form>
+          <button onClick={onClick}>Click ME!</button>
+        </form>
       </form>
     </Container>
   )
