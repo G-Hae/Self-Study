@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -67,7 +66,8 @@ interface ICoin {
 }
 
 function Coins(){
-    const { isLoading, data} = useQuery<ICoin[]>("allCoins", fetchCoins)
+    const { isLoading, data} = useQuery<ICoin[]>("allCoins", fetchCoins);
+    console.log(isLoading, data);
 
     // const [coins, setCoins]=useState<ICoin[]>([]);
     // const [loading, setLoading] = useState(true);
