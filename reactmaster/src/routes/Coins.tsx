@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -84,7 +85,11 @@ function Coins(){
     return(
         <Container>
             <Header>
-                <Title>코인</Title>
+            <Helmet>
+                <title>
+                코인
+                </title>
+            </Helmet>
             </Header>
             {isLoading?<Loader>Loading중입니다</Loader>:<CoinsList>
                 {data?.slice(0, 10).map((data)=>(
