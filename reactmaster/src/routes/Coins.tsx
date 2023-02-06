@@ -23,7 +23,7 @@ const CoinsList = styled.ul`
 
 const Coin = styled.li`
     background-color: white;
-    color: ${props=>props.theme.bgColor};
+    color: ${props=>props.theme.textColor};
     border-radius: 15px;
     margin-bottom: 10px;
     a {
@@ -66,7 +66,11 @@ interface ICoin {
     type: string,
 }
 
-function Coins(){
+interface ICoinsProps{
+    toggleDark: () => void;
+}
+
+function Coins({toggleDark}:ICoinsProps){
     const { isLoading, data} = useQuery<ICoin[]>("allCoins", fetchCoins);
     console.log(isLoading, data);
 
@@ -84,14 +88,11 @@ function Coins(){
 
     return(
         <Container>
-            <Header>
-            <Helmet>
-                <title>
-                코인
-                </title>
-            </Helmet>
-            </Header>
-            {isLoading?<Loader>Loading중입니다</Loader>:<CoinsList>
+                <Title>
+                    코인
+                </Title>
+                <button onClick={toggleDark}>Toggle Mode</button>
+                <CoinsList>
                 {data?.slice(0, 10).map((data)=>(
                     <Coin key={data.id}>
                     <Link to={{
@@ -101,7 +102,7 @@ function Coins(){
                         <Img src={`https://coinicons-api.vercel.app/api/icon/${data.symbol.toLowerCase()}`}/>{data.name} ➡</Link> 
                     </Coin>
                 ))}
-            </CoinsList>}
+            </CoinsList>
         </Container>
     );
 }
