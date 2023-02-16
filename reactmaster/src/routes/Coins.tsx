@@ -1,7 +1,9 @@
 import { Helmet } from "react-helmet";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
+import { isDarkAtom } from "../atoms";
 import { fetchCoins } from "./api";
 
 const Container = styled.div`
@@ -67,13 +69,9 @@ interface ICoin {
 }
 
 interface ICoinsProps{
-    toggleDark: () => void;
 }
 
-function Coins({toggleDark}:ICoinsProps){
-    const { isLoading, data} = useQuery<ICoin[]>("allCoins", fetchCoins);
-    console.log(isLoading, data);
-
+function Coins(){
     // const [coins, setCoins]=useState<ICoin[]>([]);
     // const [loading, setLoading] = useState(true);
 
@@ -85,13 +83,17 @@ function Coins({toggleDark}:ICoinsProps){
     //         setLoading(false);
     //     })();
     // }, []);
+    const setDarkAtom = useSetRecoilState(isDarkAtom);
+    const toggleDarkAtom = ()=>setDarkAtom(prev=>!prev);
+    const { isLoading, data} = useQuery<ICoin[]>("allCoins", fetchCoins);
+    console.log(isLoading, data);
 
     return(
         <Container>
                 <Title>
                     코인
                 </Title>
-                <button onClick={toggleDark}>Toggle Mode</button>
+                <button onClick={toggleDarkAtom}>Toggle Mode</button>
                 <CoinsList>
                 {data?.slice(0, 10).map((data)=>(
                     <Coin key={data.id}>

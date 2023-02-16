@@ -15,11 +15,11 @@ interface IHistorycal {
 
 interface ChartProps {
     coinId: string;
-    isDark: boolean;
 }
 
 
-function Chart({coinId, isDark}:ChartProps){
+function Chart({coinId}:ChartProps){
+    const isDark = useRecoilValue(isDarkAtom);
     const {isLoading, data} = useQuery<IHistorycal[]>(["ohlcv", coinId], ()=>fetchCoinHistory(coinId), {refetchInterval: 10000});
     
     return (
@@ -35,7 +35,7 @@ function Chart({coinId, isDark}:ChartProps){
         ]}
         options={{
             theme: {
-                mode: isDark? "dark":"light"
+                mode: isDark ? "dark" : "light",
             },
             chart:{
                 height: 300,
@@ -78,3 +78,12 @@ function Chart({coinId, isDark}:ChartProps){
 );
 }
 export default Chart;
+
+function useRecoilValue(isDarkAtom: boolean) {
+    throw new Error("Function not implemented.");
+}
+
+
+function isDarkAtom(isDarkAtom: boolean) {
+    throw new Error("Function not implemented.");
+}
