@@ -16,12 +16,12 @@ function CreateToDO(){
     };
 
     return<div>
-    <form onSubmit={handleSubmit(handleValid)}>
-        <input {...register("toDo",{
-            required: "Please write a To Do",
-        })} placeholder="Write a todo"/>
-        <button>Add</button>
-    </form>
+        <form onSubmit={handleSubmit(handleValid)}>
+            <input {...register("toDo",{
+                required: "Please write a To Do",
+            })} placeholder="Write a todo"/>
+            <button>Add</button>
+        </form>
     </div>         
 
 }
