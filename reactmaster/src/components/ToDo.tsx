@@ -1,5 +1,5 @@
 import { useSetRecoilState } from "recoil";
-import { IToDo, toDoState } from "./atoms";
+import { Categories, IToDo, toDoState } from "./atoms";
 
 //1) Find toDO based on the id[2] (index) -> How to find an object
 //2)
@@ -19,12 +19,13 @@ function ToDo({text, category, id}:IToDo){
         ];
     });
     };
+
     return (
     <li>
         <span>{text}</span>
-        {category !== "DOING" && <button name="DOING" onClick={onClick}>Doing</button>}
-        {category !== "TO_DO" && <button name="TO_DO" onClick={onClick}>ToDo</button>}
-        {category !== "DONE" && <button  name="DONE" onClick={onClick}>DONE</button> }    
+        {category !== Categories.DOING && <button name={Categories.TO_DO} onClick={onClick}>Doing</button>}
+        {category !== Categories.TO_DO && <button name={Categories.DOING} onClick={onClick}>ToDo</button>}
+        {category !== Categories.DONE && <button  name={Categories.DONE} onClick={onClick}>DONE</button> }    
      </li>
     );
 }
